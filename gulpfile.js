@@ -78,17 +78,17 @@ gulp.task('sass', () => {
     .pipe(browserSync.reload({stream:true}));
 });
 
-gulp.task('watch-sass', () => {
+gulp.task('watch-sass', ['sass'], () => {
   return gulp.watch(['./client/src/sass/**/*.scss',
     './client/index.html'], ['sass']);
 });
 
-gulp.task('watch-jscs', () => {
+gulp.task('watch-jscs', ['jscs'], () => {
   return gulp.watch(('./client/src/js/**/*.js'), ['jscs']);
 });
 
-gulp.task('default', ['bundle','sass', 'watch-sass', 'watch-jscs'], () => {
+gulp.task('default', ['bundle', 'build-html', 'build-data', 'watch-sass', 'watch-jscs'], () => {
   browserSync.init({
-    server: './client'
+    server: './client/dist'
   });
 });
