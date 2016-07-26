@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Recognized sponsors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#F78F1E">
+    <meta name="msapplication-navbutton-color" content="#F78F1E">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#F78F1E">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="icon" type="image/ico" href="http://www.clickfire.com/images/flags/netherlands.gif">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+    <link rel="stylesheet" href="dist/css/style.css">
+
+    <script id="template" type="text/template">
+      <p class="title"">
+        <a
+          target="_blank"
+          alt="{{ name }}"
+          href="https://www.google.com.ua/search?q={{ name | link }}">
+          {{ name }}
+        </a>
+      </p>
+
+    </script>
+
+  </head>
+  <body>
+    <header>
+      <h1>Recognized sponsors</h1>
+      <label for="filter">Search for companies:</label>
+      <input id="filter" type="text" class="search" placeholder="Start typing name of the company..." autofocus>
+    </header>
+    <ul class="news">
+      <li repeat="template" model="results"></li>
+    </ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.32/system.js"></script>
+    <script>
+      // babel client/src -s inline --out-dir client/dist
+      // http-server client -p 3000
+      SystemJS.config({
+        baseURL: 'dist/js',
+        map: {
+          'whatwg-fetch': 'https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js',
+          'babel-polyfill': 'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.9.1/polyfill.min.js',
+          'plugin-babel': 'https://cdn.rawgit.com/systemjs/plugin-babel/master/plugin-babel.js',
+          'systemjs-babel-build': 'https://cdn.rawgit.com/systemjs/plugin-babel/master/systemjs-babel-browser.js'
+        },
+        transpiler: 'plugin-babel'
+      });
+      SystemJS.import('app.js');
+    </script>
+  </body>
+  </html>
