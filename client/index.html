@@ -37,19 +37,19 @@
     </ul>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.32/system.js"></script>
     <script>
-      // babel client/src -s inline --out-dir client/dist
-      // http-server client -p 3000
-      SystemJS.config({
-        baseURL: 'dist/js',
-        map: {
-          'whatwg-fetch': 'https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js',
-          'babel-polyfill': 'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.9.1/polyfill.min.js',
-          'plugin-babel': 'https://cdn.rawgit.com/systemjs/plugin-babel/master/plugin-babel.js',
-          'systemjs-babel-build': 'https://cdn.rawgit.com/systemjs/plugin-babel/master/systemjs-babel-browser.js'
-        },
-        transpiler: 'plugin-babel'
-      });
-      SystemJS.import('app.js');
+    // babel client/src -s inline --out-dir client/dist
+    // http-server client -p 3000
+    window.SystemJS.config({
+      baseURL: 'dist/js',
+      map: {
+        'whatwg-fetch': 'https://cdnjs.cloudflare.com/ajax/libs/fetch/1.0.0/fetch.min.js',
+        'babel-polyfill': 'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.9.1/polyfill.min.js',
+        'plugin-babel': 'https://cdn.rawgit.com/systemjs/plugin-babel/master/plugin-babel.js',
+        'systemjs-babel-build': 'https://cdn.rawgit.com/systemjs/plugin-babel/master/systemjs-babel-browser.js'
+      },
+      transpiler: 'plugin-babel'
+    });
+    window.SystemJS.import('app.js');
     </script>
   </body>
   </html>
