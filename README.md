@@ -26,3 +26,8 @@ Application is accessible at netlify by URL [ind-recognized.netifly.com](https:/
 [![Stories in Ready](https://badge.waffle.io/my8bit/ind-recognized-sponsors.svg?label=ready&title=Ready)](http://waffle.io/my8bit/ind-recognized-sponsors)
 [![Stories in Progress](https://badge.waffle.io/my8bit/ind-recognized-sponsors.svg?label=in%20progress&title=In%20Progress)](http://waffle.io/my8bit/ind-recognized-sponsors)
 [![Stories in Done](https://badge.waffle.io/my8bit/ind-recognized-sponsors.svg?label=done&title=Done)](http://waffle.io/my8bit/ind-recognized-sponsors)
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/my8bit/ind-recognized-sponsors/badge.svg?style=beer-square)](https://beerpay.io/my8bit/ind-recognized-sponsors)  [![Beerpay](https://beerpay.io/my8bit/ind-recognized-sponsors/make-wish.svg?style=flat-square)](https://beerpay.io/my8bit/ind-recognized-sponsors?focus=wish)
