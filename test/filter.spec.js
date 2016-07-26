@@ -1,7 +1,10 @@
 import Filter from '../client/src/js/filter.js';
 
-const assert = require('chai').assert;
+const chai = require('chai');
 const sinon = require('sinon');
+
+const expect = chai.expect;
+const assert = chai.assert;
 
 describe('Filter', () => {
   describe('check Filter class', () => {
@@ -20,6 +23,7 @@ describe('Filter', () => {
 
     describe('should check that filterd by ', () => {
       let spy;
+      let clock;
       let spyOnce;
       let modelMock;
       let filterBy;
@@ -36,11 +40,13 @@ describe('Filter', () => {
           ],
         };
         filterBy = ['title'];
+        clock = sinon.useFakeTimers();
       });
       afterEach(() => {
         spy = null;
         modelMock = null;
         filterBy = null;
+        clock.restore();
       });
 
       it('\'title\' contains string and return 1 result',
@@ -169,16 +175,17 @@ describe('Filter', () => {
           filter = new Filter(filterConfig);
           filter.filter(e);
           assert(modelMock.model.length === 0, 'model length is');
-      });
+        });
 
       it('should set timeout for key event',
         () => {
+          let callbackSpy;
           const e = { srcElement: { value: 'title' } };
           const document = {
             getElementById: () => {
               return {
                 addEventListener: (event, callback) => {
-                  callback(e);
+                  callbackSpy = callback;
                 }
               };
             }
@@ -190,16 +197,22 @@ describe('Filter', () => {
             filterBy: ['title', 'content']
           };
           filter = new Filter(filterConfig);
-          const element = document.getElementById();
-          element.addEventListener('key', (e, cb) => {
-            console.log(e, cb);
-          });
-          element.addEventListener('key', (e, cb) => {
-            console.log(e, cb);
-          });
-          //filter.filter(e);
-          //assert(modelMock.model.length === 1, 'model length is');
-      });
+          filter.filter = sinon.spy();
+
+          callbackSpy();
+          clock.tick(100);
+          expect(filter.filter.calledOnce).to.be.ok;
+
+          callbackSpy();
+          clock.tick(50);
+          expect(filter.filter.calledTwice).to.not.be.ok;
+          callbackSpy();
+          clock.tick(50);
+          expect(filter.filter.calledTwice).to.not.be.ok;
+
+          clock.tick(50);
+          expect(filter.filter.calledTwice).to.be.ok;
+        });
 
     });
   });

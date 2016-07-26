@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "test": "mocha --compilers js:babel-core/register",
+    "jscs": "gulp jscs",
     "coverage": "./node_modules/babel-cli/bin/babel-node.js node_modules/.bin/babel-istanbul cover _mocha --report text --report html -- test",
     "coverage:watch": "./node_modules/babel-cli/bin/babel-node.js node_modules/.bin/babel-istanbul cover _mocha --report text --report html -- test",
     "test:watch": "mocha --compilers js:babel-core/register -w",

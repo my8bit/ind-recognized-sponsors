@@ -13,6 +13,7 @@ $header-background: #FF9900;
 body {
   font-family: $body-font;
   background-color: $body-background;
+  //min-width: 200px; //!TODO media!!!
 }
 
 h1 {
@@ -72,18 +73,44 @@ header {
   box-sizing: border-box;
   padding: 0.5em;
   padding-left: 1em;
-  border-radius: 0.65em;
+  border-radius: 1em;
   border: none;
 }
 
 .search:focus {
     outline: none;
 }
-
-.title {
-  font-size: 1em;
+.news {
+  list-style-type: none;
+  padding: 0 1em 0 1em;
+  max-width: 960px;
+/*
+  position: relative;
+  top: 100px;
+  */
+  margin: 0 auto;
 }
 
+.header-container {
+  padding: 1em;
+}
+
+.container {
+  margin-top: 190px;
+  //top: 180px;
+  //position: absolute;
+  ////border: 1px solid red;
+  //height: 400px;
+}
+/*
+.news {
+  overflow: scroll;
+  position: relative;
+  ////border: 1px solid blue;
+  height: 100%;
+  //z-index: -1;
+}
+*/
 @mixin transition($height) {
     -moz-transition: $height;
      -ms-transition: $height;
@@ -104,13 +131,4 @@ header {
   display: inline;
 }
 
-.news {
-  list-style-type: none;
-  padding: 0 1em 0 1em;
-  max-width: 960px;
-/*
-  position: relative;
-  top: 100px;
-  */
-  margin: 0 auto;
-}
+

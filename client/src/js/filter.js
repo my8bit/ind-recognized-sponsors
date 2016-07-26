@@ -3,6 +3,12 @@ import Action from './action.js';
 class Filter extends Action {
   constructor({ id, model, document, filterBy, caseSensetive }) {
     super({ id, model, document });
+    this._addListener();
+    this._filterBy = filterBy;
+    this._caseSensetive = caseSensetive;
+  }
+
+  _addListener() {
     let timeout = null;
     this.el.addEventListener('keyup', event => {
       if (timeout) {
@@ -12,8 +18,6 @@ class Filter extends Action {
         this.filter(event);
       }, 100);
     });
-    this._filterBy = filterBy;
-    this._caseSensetive = caseSensetive;
   }
 
   filter(event) {
