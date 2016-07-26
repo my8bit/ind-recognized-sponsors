@@ -1,5 +1,7 @@
 # Overview
 
+[![Join the chat at https://gitter.im/my8bit/ind-recognized-sponsors](https://badges.gitter.im/my8bit/ind-recognized-sponsors.svg)](https://gitter.im/my8bit/ind-recognized-sponsors?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is the application for quick search at list of recognized [ind](https://ind.nl/EN/business/public-register) sponsors 
 
 # Development
