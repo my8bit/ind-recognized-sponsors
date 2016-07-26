@@ -31,6 +31,14 @@ function bundle() {
     .pipe(browserSync.stream({once: true}));
 }
 
+const htmlhint = require('gulp-htmlhint');
+
+gulp.task('html-validate', function() {
+  return gulp.src('./client/src/index.html')
+    .pipe(htmlhint())
+    .pipe(htmlhint.reporter());
+});
+
 gulp.task('bundle', () => { return bundle(); });
 
 gulp.task('build-css', ['sass'], function() {
@@ -38,7 +46,7 @@ gulp.task('build-css', ['sass'], function() {
     .pipe(gulp.dest('./client/dist/css'));
 });
 
-gulp.task('build-html', function() {
+gulp.task('build-html', ['html-validate'], function() {
   return gulp.src('./client/src/index.html')
     .pipe(gulp.dest('./client/dist'));
 });
