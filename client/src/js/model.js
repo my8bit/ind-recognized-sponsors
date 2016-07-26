@@ -1,5 +1,9 @@
 import 'whatwg-fetch';
 
+function isFunction (fn) {
+  return typeof fn === 'function';
+}
+
 class Model {
   constructor(url) {
     this._url = url;
@@ -26,12 +30,12 @@ class Model {
   }
 
   onChange(callback) {
-    if (typeof (callback) !== 'function') { return; }
+    if (!isFunction(callback)) { return; }
     this._callbacks.push(callback);
   }
 
   onChangeOnce(callback) {
-    if (typeof (callback) !== 'function') { return; }
+    if (!isFunction(callback)) { return; }
     this._callbacksOnce.push(callback);
   }
 }
