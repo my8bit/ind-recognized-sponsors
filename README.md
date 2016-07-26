@@ -13,7 +13,7 @@ This is the application for quick search at list of recognized [ind](https://ind
 
 Application is accessible at netlify by URL [ind-recognized.netifly.com](https://ind-recognized.netlify.com)
 
-# Bages SWAG
+# Badges SWAG
 
 [![Build Status](https://travis-ci.org/my8bit/ind-recognized-sponsors.svg?branch=master)](https://travis-ci.org/my8bit/ind-recognized-sponsors)
 [![Code Climate](https://codeclimate.com/github/my8bit/ind-recognized-sponsors/badges/gpa.svg)](https://codeclimate.com/github/my8bit/ind-recognized-sponsors)

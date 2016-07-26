@@ -38,7 +38,12 @@ gulp.task('build-css', ['sass'], function() {
     .pipe(gulp.dest('./client/dist/css'));
 });
 
-gulp.task('build', ['build-js', 'build-css'],() => { });
+gulp.task('build-html', function() {
+    gulp.src('./client/src/index.html')
+    .pipe(gulp.dest('./client/dist'));
+});
+
+gulp.task('build', ['build-js', 'build-css', 'build-html'],() => { });
 
 gulp.task('build-js', () => {
   return browserify('./client/src/js/app.js')
