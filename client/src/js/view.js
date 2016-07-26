@@ -3,7 +3,7 @@ class View {
     this._dom = document;
     this._el = this._dom.querySelector(selector);
     this._parentEl = this._el.parentElement;
-    const template = this.getTemplateForAttribute(this._el, 'repeat');
+    const template = this.getTemplateForAttribute(this._el, 'data-repeat');
     this.events = events;
 
     if (!template) {
@@ -13,7 +13,7 @@ class View {
     this._model = model;
 
     this._model.onChange(model => {
-      this.render(model, template, 'repeat');
+      this.render(model, template, 'data-repeat');
     });
   }
 
