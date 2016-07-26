@@ -91,11 +91,15 @@ gulp.task('watch-sass', ['sass'], () => {
     './client/index.html'], ['sass']);
 });
 
+gulp.task('watch-html', ['build-html'], () => {
+  return gulp.watch(['./client/src/index.html'], ['build-html']);
+});
+
 gulp.task('watch-jscs', ['jscs'], () => {
   return gulp.watch(('./client/src/js/**/*.js'), ['jscs']);
 });
 
-gulp.task('default', ['bundle', 'build-html', 'build-data', 'watch-sass', 'watch-jscs'], () => {
+gulp.task('default', ['bundle', 'watch-html', 'build-data', 'watch-sass', 'watch-jscs'], () => {
   browserSync.init({
     server: './client/dist'
   });
