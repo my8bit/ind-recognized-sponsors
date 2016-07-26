@@ -1,7 +1,7 @@
 {
-  "name": "github-pure-es6-client",
+  "name": "ind-recognized",
   "version": "0.1.0",
-  "description": "This is the pure JavaScript ES6 implementation of github client",
+  "description": "This is the application for quick search for IND recognized sponsors",
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
@@ -19,7 +19,7 @@
     ]
   },
   "author": "Ihor Pavlenko",
-  "license": "unlicensed",
+  "license": "GPL",
   "devDependencies": {
     "babel-cli": "^6.10.1",
     "babel-core": "^6.4.0",
