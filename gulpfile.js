@@ -9,6 +9,7 @@ const browserSync = require('browser-sync').create();
 const sass        = require('gulp-sass');
 const jscs        = require('gulp-jscs');
 const bundler     = watchify(browserify('./client/src/js/app.js', watchify.args));
+const cleanCSS    = require('gulp-clean-css');
 
 bundler.transform(babelify.configure({
   sourceMapRelative: 'src/js'
@@ -31,6 +32,23 @@ function bundle() {
 }
 
 gulp.task('bundle', () => { return bundle(); });
+
+gulp.task('build-css', ['sass'], function() {
+  return gulp.src('./client/dist/css/*.css')
+    .pipe(gulp.dest('./client/dist/css'));
+});
+
+gulp.task('build', ['build-js', 'build-css'],() => { });
+
+gulp.task('build-js', () => {
+  return browserify('./client/src/js/app.js')
+    .transform(babelify.configure({
+      sourceMapRelative: 'src/js'
+    }))
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('./client/dist/js'));
+});
 
 gulp.task('jscs', () => {
   return gulp.src('./client/src/js/**/*.js')
