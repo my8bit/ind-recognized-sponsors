@@ -39,11 +39,21 @@ gulp.task('build-css', ['sass'], function() {
 });
 
 gulp.task('build-html', function() {
-    gulp.src('./client/src/index.html')
+  return gulp.src('./client/src/index.html')
     .pipe(gulp.dest('./client/dist'));
 });
 
-gulp.task('build', ['build-js', 'build-css', 'build-html'],() => { });
+gulp.task('build-data', function() {
+  return gulp.src(['./client/data/recognized-sponsors-data.json'])
+    .pipe(gulp.dest('./client/dist/data'));
+});
+
+gulp.task('build', [
+  'build-js',
+  'build-css',
+  'build-html',
+  'build-data',
+], () => { });
 
 gulp.task('build-js', () => {
   return browserify('./client/src/js/app.js')
