@@ -1,7 +1,7 @@
 {
   "name": "ind-recognized",
   "version": "0.1.0",
-  "description": "This is the application for quick search for IND recognized sponsors",
+  "description": "This application is for the quick search from IND recognized sponsors",
   "scripts": {
     "start": "gulp",
     "build": "gulp build",

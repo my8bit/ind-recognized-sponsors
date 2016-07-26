@@ -26,12 +26,9 @@ Application is accessible at netlify by URL [ind-recognized.netifly.com](https:/
 
 [![Gratipay User](https://img.shields.io/gratipay/user/my8bit.svg?maxAge=2592000)](https://gratipay.com/~my8bit/)
 [![PayPal Donate](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ihor%40pavlenko%2eninja&lc=AU&item_name=opensource%20support&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted)
+[![Beerpay](https://beerpay.io/my8bit/ind-recognized-sponsors/badge.svg?style=flat)](https://beerpay.io/my8bit/ind-recognized-sponsors)
+[![Beerpay](https://beerpay.io/my8bit/ind-recognized-sponsors/make-wish.svg?style=flat)](https://beerpay.io/my8bit/ind-recognized-sponsors)
 
 [![Stories in Ready](https://badge.waffle.io/my8bit/ind-recognized-sponsors.svg?label=ready&title=Ready)](http://waffle.io/my8bit/ind-recognized-sponsors)
 [![Stories in Progress](https://badge.waffle.io/my8bit/ind-recognized-sponsors.svg?label=in%20progress&title=In%20Progress)](http://waffle.io/my8bit/ind-recognized-sponsors)
 [![Stories in Done](https://badge.waffle.io/my8bit/ind-recognized-sponsors.svg?label=done&title=Done)](http://waffle.io/my8bit/ind-recognized-sponsors)
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/my8bit/ind-recognized-sponsors/badge.svg?style=beer-square)](https://beerpay.io/my8bit/ind-recognized-sponsors)  [![Beerpay](https://beerpay.io/my8bit/ind-recognized-sponsors/make-wish.svg?style=flat-square)](https://beerpay.io/my8bit/ind-recognized-sponsors?focus=wish)
