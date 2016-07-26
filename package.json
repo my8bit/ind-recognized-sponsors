@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "This is the pure JavaScript ES6 implementation of github client",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "gulp",
+    "start:webpack": "webpack-dev-server",
     "test": "mocha --compilers js:babel-core/register",
     "jscs": "gulp jscs",
     "coverage": "./node_modules/babel-cli/bin/babel-node.js node_modules/.bin/babel-istanbul cover _mocha --report text --report html -- test",

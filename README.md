@@ -1,30 +1,14 @@
 # Overview
 
-I'm using a gulp for development, but later implemented simple webpack config as well.
+This is the application for quick search at list of recognized [ind](https://ind.nl/EN/business/public-register) sponsors 
 
-Requirement for runing project is *node v6.2.0* and *npm 3.8.9*
+# Development
 
-To install dependencied run:
-```sh
-$ npm i
-```
+* For install all dependencies run ``` npm i ```
+* For local run ``` npm start ```
+* Tests ``` npm test ```
+* Test coverage ``` npm run coverage ```
 
-Then run: 
-```sh
-$ npm start
-```
+# Deployment
 
-Open browser at link [localhost:8080](http://localhost:8080/)
-
-To run test run:
-```sh
-$ npm test
-```
-
-Application config placed at
-
-```sh
-$ cd client/src/js/config.js
-```
-
-You can specify there data source, fields to filter by etc.
+Application is accessible at netlify by URL [ind-recognized.netifly.com](https://ind-recognized.netifly.com)
