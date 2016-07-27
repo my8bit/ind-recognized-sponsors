@@ -1,0 +1,26 @@
+doctype html
+html(lang="en-US")
+  head
+    title Recognized sponsors 
+    meta(name="viewport"                              content="width=device-width, initial-scale=1")
+    meta(name="theme-color"                           content="#F78F1E")
+    meta(name="msapplication-navbutton-color"         content="#F78F1E")
+    meta(name="apple-mobile-web-app-status-bar-style" content="#F78F1E")
+    meta(http-equiv="Content-Type"                    content="text/html; charset=utf-8")
+    link(rel="icon"       href="http://www.clickfire.com/images/flags/netherlands.gif" type="image/ico" )
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css")
+    script#template(type="text/template")
+      p.title
+        a(target="_blank")
+        | {{ name }}
+  body
+    header
+      div.header-container
+        //a(target="_blank" style="float: right;" href="https://validator.w3.org/nu/?doc=http%3A%2F%2Find-recognized.netlify.com")
+          img(src="https://www.w3.org/html/logo/downloads/HTML5_Badge_32.png" width="32" height="32" alt="HTML5 Powered" title="HTML5 Powered")
+        h1 Recognized sponsors
+        label(for="filter") Search for companies
+        input#filter(type="text" class="search" placeholder="Start typing name of the company..." autofocus)
+    div.container
+      ul.news
+        li(data-repeat="template" data-model="results")
