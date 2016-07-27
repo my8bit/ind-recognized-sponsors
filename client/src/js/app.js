@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import Model from './model.js'; //refactor to use not file
 import View from './view.js';
 import Filter from './filter.js';
@@ -11,7 +10,6 @@ const view = new View({
   model: model,
   document: document
 });
-
 const filterConfig = {
   id: config.filterId,
   model: model,

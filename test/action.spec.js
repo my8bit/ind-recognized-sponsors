@@ -2,6 +2,7 @@ import Action from '../client/src/js/action.js';
 import chai from 'chai';
 import sinon from 'sinon';
 
+/*jshint expr: true*/
 const expect = chai.expect;
 
 describe('Action', function() {

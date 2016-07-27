@@ -5,6 +5,7 @@ import sinon from 'sinon';
 import spies from 'chai-spies';
 
 const assert = chai.assert;
+/*jshint expr: true*/
 const expect = chai.expect;
 
 chai.use(spies);

@@ -3,6 +3,7 @@ import Filter from '../client/src/js/filter.js';
 const chai = require('chai');
 const sinon = require('sinon');
 
+/*jshint expr: true*/
 const expect = chai.expect;
 const assert = chai.assert;
 
