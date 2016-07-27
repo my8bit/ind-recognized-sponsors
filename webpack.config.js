@@ -53,7 +53,7 @@ module.exports = {
     },
     plugins: [
       new CopyWebpackPlugin([{
-        from: './client/data/recognized-sponsors-data.json', 
+        from: './client/data/recognized-sponsors-data.json',
         to: '../data'
       }]),
       new HtmlWebpackPlugin({
