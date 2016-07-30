@@ -32,7 +32,7 @@ class Filter extends Action {
           model[filterName].toUpperCase() : model[filterName];
 
         const searchString = !this._caseSensetive ? value.toUpperCase() : value;
-        return !!~sourceString.search(searchString);
+        return sourceString.search(searchString) !== -1;
       });
     });
   }
