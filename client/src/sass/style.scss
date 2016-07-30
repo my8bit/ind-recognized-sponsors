@@ -1,5 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,300);
-@import url(https://fonts.googleapis.com/css?family=Bitter);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300|Bitter);
 
 $headers-color:  #3B1C00;
 $headers-font: 'Bitter' ,sans-serif;
@@ -80,7 +79,7 @@ header {
 .search:focus {
     outline: none;
 }
-.news {
+.companies {
   list-style-type: none;
   padding: 0 1em 0 1em;
   max-width: 960px;
@@ -111,24 +110,7 @@ header {
   //z-index: -1;
 }
 */
-@mixin transition($height) {
-    -moz-transition: $height;
-     -ms-transition: $height;
-      -o-transition: $height;
- -webkit-transition: $height;
-         transition: $height;
+
+.title {
+  margin: 16px 0 16px 0;
 }
-
-.post-container { 
-  @include transition(height .5s); 
-  height: 0;
-  overflow: hidden;
-}
-
-.about li {
-  color: $body-font-light;
-  font-size: smaller;
-  display: inline;
-}
-
-

@@ -4,6 +4,7 @@ class Filter extends Action {
   constructor({ id, model, document, filterBy, caseSensetive }) {
     super({ id, model, document });
     this._addListener();
+    this.value = '';
     this._filterBy = filterBy;
     this._caseSensetive = caseSensetive;
   }
@@ -21,14 +22,15 @@ class Filter extends Action {
   }
 
   filter(event) {
-    const value = event.srcElement.value;
+    if (this.value === event.srcElement.value) { return; }
+    this.value = event.srcElement.value;
     this._model.model = this._searchBase.filter(model => {
       return this._filterBy.some(filterName => {
         const sourceString = !this._caseSensetive ?
           model[filterName].toUpperCase() : model[filterName];
 
-        const searchString = !this._caseSensetive ? value.toUpperCase() : value;
-        return !!~sourceString.search(searchString);
+        const searchString = !this._caseSensetive ? this.value.toUpperCase() : this.value;
+        return sourceString.search(searchString) !== -1;
       });
     });
   }

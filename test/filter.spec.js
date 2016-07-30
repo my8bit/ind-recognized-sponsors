@@ -3,6 +3,7 @@ import Filter from '../client/src/js/filter.js';
 const chai = require('chai');
 const sinon = require('sinon');
 
+/*jshint expr: true*/
 const expect = chai.expect;
 const assert = chai.assert;
 
@@ -61,6 +62,35 @@ describe('Filter', () => {
           filter = new Filter(filterConfig);
           filter.filter(e);
           assert(modelMock.model.length === 1, 'model length is');
+        });
+
+      it('that model not filters if input strings is the same as previous',
+        () => {
+          let callbackSpy;
+          const e = { srcElement: { value: 'title' } };
+          const document = {
+            getElementById: () => {
+              return {
+                addEventListener: (event, callback) => {
+                  callbackSpy = callback;
+                }
+              };
+            }
+          };
+          const filterConfig = {
+            id: 'mockFilter',
+            model: modelMock,
+            document: document,
+            filterBy: ['title', 'content']
+          };
+          filter = new Filter(filterConfig);
+          filter._searchBase.filter = sinon.spy();
+          expect(filter.value).to.be.equal('');
+          filter.filter(e);
+          expect(filter._searchBase.filter.calledOnce).to.be.ok;
+          expect(filter.value).to.be.equal('title');
+          filter.filter({ srcElement: { value: 'title' }});
+          expect(filter._searchBase.filter.calledOnce).to.be.ok;
         });
 
       it('\'title\' and not ignore case contains string and return 2 results',

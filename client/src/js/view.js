@@ -1,70 +1,31 @@
 class View {
-  constructor({selector, model, events, document}) { //TODO fix this for destructuring
-    this._dom = document;
-    this._el = this._dom.querySelector(selector);
-    this._parentEl = this._el.parentElement;
-    const template = this.getTemplateForAttribute(this._el, 'data-repeat');
-    this.events = events;
-
-    if (!template) {
-      console.warn('Please specify template.'); //TODO correct
-      return;
-    }
-    this._model = model;
-
-    this._model.onChange(model => {
-      this.render(model, template, 'data-repeat');
+  constructor({ selector, model, document, template }) {
+    this._el = document.querySelector(selector);
+    this.tempContainer = document.createElement('div');
+    model.onChange(updatedModel => {
+      this.renderPug(updatedModel, template);
     });
   }
 
-  render(model, templ, type) {
-    const container = this.makeInnerTemplate(model, templ, type);
-    this._parentEl.innerHTML = '';
-    this._parentEl.appendChild(container);
-  }
+  renderPug(model, template) {
+    const j = model.length;
+    const chunkSize = 100;
+    let temparray, chunkedModel;
+    let i = 0;
 
-  makeInnerTemplate(model, templ, type) {
-    const container = this._dom.createDocumentFragment();
-    let match;
-    const templateRegex = /({{)(.*)(}})/g;
-    model.forEach(modelItem => {
-      let replaced = templ;
-      while ((match = templateRegex.exec(templ)) !== null) {
-        const inner = match[2].trim();
-        const outer = match[0];
-        let content;
-        const pipe = inner.split('|');
-        content = pipe.length > 1 ?
-          this.transform(pipe[0].trim(), pipe[1].trim(), modelItem) :
-          modelItem[inner];
-
-        replaced = replaced.replace(outer, content);
-      }
-      let nextEl = this._el.cloneNode();
-      nextEl.innerHTML = replaced;
-      container.appendChild(nextEl);
-    });
-
-    return container;
-  }
-
-  transform(inner, type, modelItem) {
-    let content;
-    switch (type) {
-      case 'link':
-        content = decodeURIComponent(modelItem[inner]);
-        break;
+    this._el.innerHTML = '';
+    for (; i < j; i += chunkSize) {
+      chunkedModel = model.slice(i, i + chunkSize);
+      this.tempContainer.innerHTML = template({ model: chunkedModel });
+      this.appendChildsToEl(this._el, this.tempContainer);
     }
-    return content;
   }
 
-  getTemplateForAttribute(el, attr) {
-    const repeat = el.attributes[attr];
-    if (!repeat) { return; }
-    const templId = el.getAttribute(attr);
-    return document.getElementById(templId).innerHTML;
+  appendChildsToEl(root, node) {
+    while (node.children.length) {
+      root.appendChild(node.children[0]);
+    }
   }
-
 }
 
 export default View;

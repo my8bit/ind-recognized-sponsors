@@ -1,12 +1,18 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
 var path = require('path');
 
 function getDevTool() {
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'PRODUCTION') {
     return 'source-map'; //enables source map
   }
-
   return false;
+}
+
+function isPoduction() {
+  return process.env.PRODUCTION;
 }
 
 module.exports = {
@@ -16,34 +22,48 @@ module.exports = {
     ],
     output: {
       path: path.resolve(__dirname, 'client/dist/js'),
-      publicPath: path.resolve(__dirname, 'client/dist/js'),
       filename: 'bundle.js'
     },
     devServer: {
-      //hot: true,
-      //progress: true,
       colors: true,
       open: true,
-      contentBase: 'client'
+      contentBase: 'client/dist'
     },
     devtool: getDevTool(),
     module: {
       loaders: [
         {
-            test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: 'babel',
-            query: {
-              presets: ['es2015']
-            }
-          },
+          test: /\.js$/,
+          exclude: /(node_modules|bower_components)/,
+          loader: 'babel',
+          query: {
+            presets: ['es2015']
+          }
+        },
+        {
+          test: /\.jade$/,
+          loader: 'pug-loader',
+          query: { pretty: !isPoduction() }
+        },
         {
           test: /\.scss$/,
           loader: ExtractTextPlugin.extract('css!sass')
         }
       ]
     },
+    sassLoader: {
+      includePaths: [require('bourbon').includePaths]
+    },
     plugins: [
+      new CopyWebpackPlugin([{
+        from: './client/data/recognized-sponsors-data.json',
+        to: '../data'
+      }]),
+      new HtmlWebpackPlugin({
+        template: './client/src/index.jade',
+        filename: '../index.html',
+        pretty: true
+      }),
       new ExtractTextPlugin('../css/style.css', {
         allChunks: true
       })
