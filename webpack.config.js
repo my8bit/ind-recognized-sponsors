@@ -43,7 +43,7 @@ module.exports = {
         {
           test: /\.jade$/,
           loader: 'pug-loader',
-          query: { pretty: !isPoduction() }
+          //query: { pretty: !isPoduction() }
         },
         {
           test: /\.scss$/,
