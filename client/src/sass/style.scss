@@ -79,7 +79,7 @@ header {
 .search:focus {
     outline: none;
 }
-.news {
+.companies {
   list-style-type: none;
   padding: 0 1em 0 1em;
   max-width: 960px;
@@ -130,4 +130,33 @@ header {
   display: inline;
 }
 
+// Spinner by Matt Sisto http://codepen.io/msisto/pen/LntJe
 
+@import "bourbon";
+
+$color:      #503D84;
+$size:       30px;
+$speed:      0.75s;
+$thickness:  8px; // Odd numbers created a "wobble" effect.
+
+@mixin rotate-forever {
+  0%    { @include transform(rotate(0deg)); }
+  100%  { @include transform(rotate(360deg)); }
+}
+@-webkit-keyframes rotate-forever { @include rotate-forever; }
+   @-moz-keyframes rotate-forever { @include rotate-forever; }
+        @keyframes rotate-forever { @include rotate-forever; }
+
+.loading-spinner {
+  @include animation-duration($speed);
+  @include animation-iteration-count(infinite);
+  @include animation-name(rotate-forever);
+  @include animation-timing-function(linear);
+  @include size($size);
+  border: $thickness solid $color;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  @include position(absolute, 50% 0 0 50%);
+  margin: -$size/2 0 0 -$size/2;
+}

@@ -1,70 +1,34 @@
 class View {
-  constructor({selector, model, events, document}) { //TODO fix this for destructuring
-    this._dom = document;
-    this._el = this._dom.querySelector(selector);
-    this._parentEl = this._el.parentElement;
-    const template = this.getTemplateForAttribute(this._el, 'data-repeat');
-    this.events = events;
-
-    if (!template) {
-      console.warn('Please specify template.'); //TODO correct
-      return;
-    }
-    this._model = model;
-
-    this._model.onChange(model => {
-      this.render(model, template, 'data-repeat');
+  constructor({selector, model, document, template}) { //TODO fix this for destructuring
+    this._el = document.querySelector(selector);
+    model.onChange(updatedModel => {
+      this.renderPug(updatedModel, template);
     });
+    this.spinner = document.createElement('div');
+    this.spinner.className = 'loading-spinner';
+    this._el.parentNode.appendChild(this.spinner);
+
   }
 
-  render(model, templ, type) {
-    const container = this.makeInnerTemplate(model, templ, type);
-    this._parentEl.innerHTML = '';
-    this._parentEl.appendChild(container);
-  }
+  renderPug(model, template) {
+    /*
+    var style = this._el.style.display;
+    this._el.style.display = 'none';
 
-  makeInnerTemplate(model, templ, type) {
-    const container = this._dom.createDocumentFragment();
-    let match;
-    const templateRegex = /({{)(.*)(}})/g;
-    model.forEach(modelItem => {
-      let replaced = templ;
-      while ((match = templateRegex.exec(templ)) !== null) {
-        const inner = match[2].trim();
-        const outer = match[0];
-        let content;
-        const pipe = inner.split('|');
-        content = pipe.length > 1 ?
-          this.transform(pipe[0].trim(), pipe[1].trim(), modelItem) :
-          modelItem[inner];
+    this.spinner.style.display = 'block';
 
-        replaced = replaced.replace(outer, content);
-      }
-      let nextEl = this._el.cloneNode();
-      nextEl.innerHTML = replaced;
-      container.appendChild(nextEl);
-    });
-
-    return container;
-  }
-
-  transform(inner, type, modelItem) {
-    let content;
-    switch (type) {
-      case 'link':
-        content = decodeURIComponent(modelItem[inner]);
-        break;
+    if (this.timer) {
+      clearTimeout(this.timer);
     }
-    return content;
+    this.timer = setTimeout(() => {
+    */
+    this._el.innerHTML = template({ model });
+    /*
+      this._el.style.display = style;
+      this.spinner.style.display = 'none';
+    }, 4);
+    */
   }
-
-  getTemplateForAttribute(el, attr) {
-    const repeat = el.attributes[attr];
-    if (!repeat) { return; }
-    const templId = el.getAttribute(attr);
-    return document.getElementById(templId).innerHTML;
-  }
-
 }
 
 export default View;

@@ -64,6 +64,20 @@ describe('Filter', () => {
           assert(modelMock.model.length === 1, 'model length is');
         });
 
+      xit('ignores same input',
+        () => {
+          const e = { srcElement: { value: 'hello' } };
+          const filterConfig = {
+            id: 'mockFilter',
+            model: modelMock,
+            document: document,
+            filterBy: filterBy
+          };
+          filter = new Filter(filterConfig);
+          filter.filter(e);
+          assert(modelMock.model.length === 1, 'model length is');
+        });
+
       it('\'title\' and not ignore case contains string and return 2 results',
         () => {
           const e = { srcElement: { value: 'HELL' } };

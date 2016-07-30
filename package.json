@@ -51,6 +51,7 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "bourbon": "^4.2.7",
     "whatwg-fetch": "^1.0.0"
   }
 }

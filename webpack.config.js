@@ -51,6 +51,9 @@ module.exports = {
         }
       ]
     },
+    sassLoader: {
+      includePaths: [require("bourbon").includePaths]
+    },
     plugins: [
       new CopyWebpackPlugin([{
         from: './client/data/recognized-sponsors-data.json',

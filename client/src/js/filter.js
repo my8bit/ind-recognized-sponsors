@@ -4,6 +4,7 @@ class Filter extends Action {
   constructor({ id, model, document, filterBy, caseSensetive }) {
     super({ id, model, document });
     this._addListener();
+    this.value = '';
     this._filterBy = filterBy;
     this._caseSensetive = caseSensetive;
   }
@@ -21,7 +22,10 @@ class Filter extends Action {
   }
 
   filter(event) {
-    const value = event.srcElement.value;
+    //if (this.value === event.srcElement.value) { return; }
+    this.value = event.srcElement.value;
+    const value = this.value;
+    //console.log(!!String.fromCharCode(value));
     this._model.model = this._searchBase.filter(model => {
       return this._filterBy.some(filterName => {
         const sourceString = !this._caseSensetive ?

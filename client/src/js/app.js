@@ -6,9 +6,10 @@ import config from './config.js';
 const model = new Model(config.url);
 model.init();
 const view = new View({
-  selector: config.post,
+  selector: config.list,
   model: model,
-  document: document
+  document: document,
+  template: config.template
 });
 const filterConfig = {
   id: config.filterId,
