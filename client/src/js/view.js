@@ -1,34 +1,32 @@
 class View {
   constructor({ selector, model, document, template }) {
     this._el = document.querySelector(selector);
+    this.tempContainer = document.createElement('div');
     model.onChange(updatedModel => {
       this.renderPug(updatedModel, template);
     });
-    /*
-    this.spinner = document.createElement('div');
-    this.spinner.className = 'loading-spinner';
-    this._el.parentNode.appendChild(this.spinner);
-    */
   }
 
   renderPug(model, template) {
-    /*
-    var style = this._el.style.display;
-    this._el.style.display = 'none';
+    console.time('label');
+    const j = model.length;
+    const chunkSize = 100;
+    let temparray, chunkedModel;
+    let i = 0;
 
-    this.spinner.style.display = 'block';
-
-    if (this.timer) {
-      clearTimeout(this.timer);
+    this._el.innerHTML = '';
+    for (; i < j; i += chunkSize) {
+      chunkedModel = model.slice(i, i + chunkSize);
+      this.tempContainer.innerHTML = template({ model: chunkedModel });
+      this.appendChildsToEl(this._el, this.tempContainer);
+      console.timeEnd('label');
     }
-    this.timer = setTimeout(() => {
-    */
-    this._el.innerHTML = template({ model });
-    /*
-      this._el.style.display = style;
-      this.spinner.style.display = 'none';
-    }, 4);
-    */
+  }
+
+  appendChildsToEl(root, node) {
+    while (node.children.length) {
+      root.appendChild(node.children[0]);
+    }
   }
 }
 
