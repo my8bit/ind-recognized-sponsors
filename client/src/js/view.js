@@ -8,7 +8,6 @@ class View {
   }
 
   renderPug(model, template) {
-    console.time('label');
     const j = model.length;
     const chunkSize = 100;
     let temparray, chunkedModel;
@@ -19,7 +18,6 @@ class View {
       chunkedModel = model.slice(i, i + chunkSize);
       this.tempContainer.innerHTML = template({ model: chunkedModel });
       this.appendChildsToEl(this._el, this.tempContainer);
-      console.timeEnd('label');
     }
   }
 
