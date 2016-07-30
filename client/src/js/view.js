@@ -4,10 +4,11 @@ class View {
     model.onChange(updatedModel => {
       this.renderPug(updatedModel, template);
     });
+    /*
     this.spinner = document.createElement('div');
     this.spinner.className = 'loading-spinner';
     this._el.parentNode.appendChild(this.spinner);
-
+    */
   }
 
   renderPug(model, template) {
