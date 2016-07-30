@@ -52,7 +52,7 @@ module.exports = {
       ]
     },
     sassLoader: {
-      includePaths: [require("bourbon").includePaths]
+      includePaths: [require('bourbon').includePaths]
     },
     plugins: [
       new CopyWebpackPlugin([{

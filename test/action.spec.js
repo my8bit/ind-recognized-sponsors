@@ -8,10 +8,17 @@ const expect = chai.expect;
 describe('Action', function() {
   describe('sort check sort function ', function () {
     let sort;
+    const modelMock = {
+      model: [
+        { publishedDate: 2, title: 'hello word', content: 'this is word content'},
+        { publishedDate: 1, title: 'this is some hell title', content: 'is some title'}
+      ]
+    };
     const spy = sinon.spy(input => {
       input(modelMock.model);
-    }),
-    document = {
+    });
+    modelMock.onChangeOnce = spy;
+    const document = {
       getElementById: () => {
         return {
           addEventListener: () => {}
@@ -19,13 +26,6 @@ describe('Action', function() {
       }
     },
     e = { preventDefault: () => {} },
-    modelMock = {
-      onChangeOnce: spy,
-      model: [
-        { publishedDate: 2, title: 'hello word', content: 'this is word content'},
-        { publishedDate: 1, title: 'this is some hell title', content: 'is some title'}
-      ],
-    },
     config = {
       id: 'mockSort',
       model: modelMock,
