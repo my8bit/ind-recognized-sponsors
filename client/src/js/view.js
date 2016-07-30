@@ -1,5 +1,5 @@
 class View {
-  constructor({selector, model, document, template}) { //TODO fix this for destructuring
+  constructor({ selector, model, document, template }) {
     this._el = document.querySelector(selector);
     model.onChange(updatedModel => {
       this.renderPug(updatedModel, template);

@@ -22,16 +22,14 @@ class Filter extends Action {
   }
 
   filter(event) {
-    //if (this.value === event.srcElement.value) { return; }
+    if (this.value === event.srcElement.value) { return; }
     this.value = event.srcElement.value;
-    const value = this.value;
-    //console.log(!!String.fromCharCode(value));
     this._model.model = this._searchBase.filter(model => {
       return this._filterBy.some(filterName => {
         const sourceString = !this._caseSensetive ?
           model[filterName].toUpperCase() : model[filterName];
 
-        const searchString = !this._caseSensetive ? value.toUpperCase() : value;
+        const searchString = !this._caseSensetive ? this.value.toUpperCase() : this.value;
         return sourceString.search(searchString) !== -1;
       });
     });
