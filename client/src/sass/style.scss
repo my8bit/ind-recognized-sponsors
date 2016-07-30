@@ -110,19 +110,6 @@ header {
   //z-index: -1;
 }
 */
-@mixin transition($height) {
-    -moz-transition: $height;
-     -ms-transition: $height;
-      -o-transition: $height;
- -webkit-transition: $height;
-         transition: $height;
-}
-
-.post-container { 
-  @include transition(height .5s); 
-  height: 0;
-  overflow: hidden;
-}
 
 .about li {
   color: $body-font-light;
@@ -130,6 +117,9 @@ header {
   display: inline;
 }
 
+.title {
+  margin: 16px 0 16px 0;
+}
 // Spinner by Matt Sisto http://codepen.io/msisto/pen/LntJe
 
 @import "bourbon";
