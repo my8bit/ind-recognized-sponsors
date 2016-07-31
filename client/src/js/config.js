@@ -1,7 +1,9 @@
+import template from '../template.jade';
+
 export default {
   list: 'ul.companies',
   url: 'data/recognized-sponsors-data.json',
-  template: require('../template.jade'),
+  template,
   filterId: 'filter',
   filterBy: ['name']
 };

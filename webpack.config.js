@@ -1,7 +1,7 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-
+var bourbon           = require('bourbon');
 var path = require('path');
 
 function getDevTool() {
@@ -27,7 +27,7 @@ module.exports = {
     devServer: {
       colors: true,
       open: true,
-      host: "0.0.0.0",
+      host: '0.0.0.0',
       contentBase: 'client/dist'
     },
     devtool: getDevTool(),
@@ -44,7 +44,7 @@ module.exports = {
         {
           test: /\.jade$/,
           loader: 'pug-loader',
-          //query: { pretty: !isPoduction() }
+          query: { pretty: !isPoduction() }
         },
         {
           test: /\.scss$/,
@@ -53,7 +53,7 @@ module.exports = {
       ]
     },
     sassLoader: {
-      includePaths: [require('bourbon').includePaths]
+      includePaths: [bourbon.includePaths]
     },
     plugins: [
       new CopyWebpackPlugin([{
