@@ -27,6 +27,7 @@ module.exports = {
     devServer: {
       colors: true,
       open: true,
+      host: "0.0.0.0",
       contentBase: 'client/dist'
     },
     devtool: getDevTool(),

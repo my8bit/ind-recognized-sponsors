@@ -8,22 +8,29 @@ class View {
   }
 
   renderPug(model, template) {
+    //console.time('start rendering');
     const j = model.length;
     const chunkSize = 100;
     let temparray, chunkedModel;
     let i = 0;
 
-    this._el.innerHTML = '';
-    for (; i < j; i += chunkSize) {
-      chunkedModel = model.slice(i, i + chunkSize);
-      this.tempContainer.innerHTML = template({ model: chunkedModel });
-      this.appendChildsToEl(this._el, this.tempContainer);
+    while (this._el.firstChild) {
+      this._el.removeChild(this._el.firstChild);
     }
+
+    setTimeout(() => {
+      for (; i < j; i += chunkSize) {
+        chunkedModel = model.slice(i, i + chunkSize);
+        this.tempContainer.innerHTML = template({ model: chunkedModel });
+        this.appendChildsToEl(this._el, this.tempContainer);
+      }
+      //console.timeEnd('start rendering');
+    }, 0);
   }
 
   appendChildsToEl(root, node) {
-    while (node.children.length) {
-      root.appendChild(node.children[0]);
+    while (node.firstChild) {
+      root.appendChild(node.firstChild);
     }
   }
 }

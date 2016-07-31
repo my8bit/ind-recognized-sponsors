@@ -12,12 +12,14 @@ class Filter extends Action {
   _addListener() {
     let timeout = null;
     this.el.addEventListener('keyup', event => {
+      console.timeEnd('key');
+      console.time('key');
       if (timeout) {
         clearTimeout(timeout);
       }
       timeout = setTimeout(() => {
         this.filter(event);
-      }, 100);
+      }, 150);
     });
   }
 

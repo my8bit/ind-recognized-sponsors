@@ -3,6 +3,7 @@ import View from './view.js';
 import Filter from './filter.js';
 import config from './config.js';
 
+//document.body.requestFullscreen();
 const model = new Model(config.url);
 model.init();
 const view = new View({

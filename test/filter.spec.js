@@ -230,14 +230,14 @@ describe('Filter', () => {
           filter.filter = sinon.spy();
 
           callbackSpy();
-          clock.tick(100);
+          clock.tick(150);
           expect(filter.filter.calledOnce).to.be.ok;
 
           callbackSpy();
           clock.tick(50);
           expect(filter.filter.calledTwice).to.not.be.ok;
           callbackSpy();
-          clock.tick(50);
+          clock.tick(100);
           expect(filter.filter.calledTwice).to.not.be.ok;
 
           clock.tick(50);
