@@ -1,3 +1,4 @@
+import 'material-design-lite';
 import Model from './model.js'; //refactor to use not file
 import View from './view.js';
 import Filter from './filter.js';
