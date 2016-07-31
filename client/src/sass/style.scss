@@ -10,63 +10,13 @@ $body-font-light: #3A4F52;
 
 $header-background: #FF9900;
 
-a {
-  cursor: pointer;
-  color: #503D84;
-}
-
-header {
+.header {
   background-color: $header-background;
   width: 100%;
   top: 0;
   left: 0;
   position: fixed;
 }
-
-.search {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.5em;
-  padding-left: 1em;
-  border-radius: 1em;
-  border: none;
-}
-
-.search:focus {
-    outline: none;
-}
-.companies {
-  list-style-type: none;
-  padding: 0 1em 0 1em;
-  max-width: 960px;
-/*
-  position: relative;
-  top: 100px;
-  */
-  margin: 0 auto;
-}
-
-.header-container {
-  padding: 1em;
-}
-
 .container {
-  margin-top: 190px;
-  //top: 180px;
-  //position: absolute;
-  ////border: 1px solid red;
-  //height: 400px;
-}
-/*
-.news {
-  overflow: scroll;
-  position: relative;
-  ////border: 1px solid blue;
-  height: 100%;
-  //z-index: -1;
-}
-*/
-
-.title {
-  margin: 16px 0 16px 0;
+  margin-top: 11em;
 }
