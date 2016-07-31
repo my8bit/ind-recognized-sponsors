@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,300|Bitter);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 
 $headers-color:  #3B1C00;
 $headers-font: 'Bitter' ,sans-serif;
@@ -9,108 +10,13 @@ $body-font-light: #3A4F52;
 
 $header-background: #FF9900;
 
-body {
-  font-family: $body-font;
-  background-color: $body-background;
-  //min-width: 200px; //!TODO media!!!
-}
-
-h1 {
-  font-family: $headers-font;
-  color: $headers-color;
-  font-size: 2em;
-  a {
-    color: $headers-color;
-  }
-}
-
-a {
-  /*text-decoration: none;*/
-  cursor: pointer;
-  color: #503D84;
-}
-
-
-a:focus {
-  /*box-shadow: inset 1px 0 1px 0 rgba(0,0,0,.45);*/
-  padding-left: 1em;
-  outline: none;
-  /*
-  outline-offset: 0.3em;
-  outline-width: 5px;
-  outline-style: dotted;
-  outline-color: $header-background;  */
-  
-  border-left: 1em solid $header-background;
-  border-color: transparent transparent transparent $header-background;
-}
-
-a:hover {
-  padding-left: 1em;
-}
-
-a:visited {
-  color: $headers-color;
-}
-
-label {
-  display: block;
-  margin-bottom: 1em;
-}
-
-header {
+.header {
   background-color: $header-background;
-  /*padding: 1em;*/
   width: 100%;
   top: 0;
   left: 0;
   position: fixed;
 }
-
-.search {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.5em;
-  padding-left: 1em;
-  border-radius: 1em;
-  border: none;
-}
-
-.search:focus {
-    outline: none;
-}
-.companies {
-  list-style-type: none;
-  padding: 0 1em 0 1em;
-  max-width: 960px;
-/*
-  position: relative;
-  top: 100px;
-  */
-  margin: 0 auto;
-}
-
-.header-container {
-  padding: 1em;
-}
-
 .container {
-  margin-top: 190px;
-  //top: 180px;
-  //position: absolute;
-  ////border: 1px solid red;
-  //height: 400px;
-}
-/*
-.news {
-  overflow: scroll;
-  position: relative;
-  ////border: 1px solid blue;
-  height: 100%;
-  //z-index: -1;
-}
-*/
-
-.title {
-  margin: 16px 0 16px 0;
+  margin-top: 11em;
 }
