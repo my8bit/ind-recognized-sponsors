@@ -12,24 +12,26 @@ class Filter extends Action {
   _addListener() {
     let timeout = null;
     this.el.addEventListener('keyup', event => {
+      console.timeEnd('key');
+      console.time('key');
       if (timeout) {
         clearTimeout(timeout);
       }
       timeout = setTimeout(() => {
-        if (this.value === event.srcElement.value) { return; }
-        this.value = event.srcElement.value;
-        this.filter(this.value);
+        this.filter(event);
       }, 150);
     });
   }
 
-  filter(value) {
+  filter(event) {
+    if (this.value === event.srcElement.value) { return; }
+    this.value = event.srcElement.value;
     this._model.model = this._searchBase.filter(model => {
       return this._filterBy.some(filterName => {
         const sourceString = !this._caseSensetive ?
           model[filterName].toUpperCase() : model[filterName];
 
-        const searchString = !this._caseSensetive ? value.toUpperCase() : value;
+        const searchString = !this._caseSensetive ? this.value.toUpperCase() : this.value;
         return sourceString.search(searchString) !== -1;
       });
     });

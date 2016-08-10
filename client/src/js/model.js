@@ -23,11 +23,10 @@ class Model {
     this._callbacksOnce = [];
   }
 
-  init(router) {
+  init() {
     return fetch(this._url)
-      .then(response => response.json())
-      .then(data => data)
-      .then(data => this.model = data);
+      .then(response => { return response.json(); })
+      .then(data => { this.model = data; });
   }
 
   onChange(callback) {
