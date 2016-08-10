@@ -52,7 +52,8 @@ describe('Filter', () => {
 
       it('\'title\' contains string and return 1 result',
         () => {
-          const e = { srcElement: { value: 'hello' } };
+          //const e = { srcElement: { value: 'hello' } };
+          const e = 'hello';
           const filterConfig = {
             id: 'mockFilter',
             model: modelMock,
