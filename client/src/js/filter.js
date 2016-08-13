@@ -16,23 +16,27 @@ class Filter extends Action {
         clearTimeout(timeout);
       }
       timeout = setTimeout(() => {
-        this.filter(event);
+        this.filterEvent(event);
       }, 150);
     });
   }
 
-  filter(event) {
-    if (this.value === event.srcElement.value) { return; }
-    this.value = event.srcElement.value;
-    this._model.model = this._searchBase.filter(model => {
+  filter(value, model) {
+    return model.filter(model => {
       return this._filterBy.some(filterName => {
         const sourceString = !this._caseSensetive ?
           model[filterName].toUpperCase() : model[filterName];
 
-        const searchString = !this._caseSensetive ? this.value.toUpperCase() : this.value;
+        const searchString = !this._caseSensetive ? value.toUpperCase() : value;
         return sourceString.search(searchString) !== -1;
       });
     });
+  }
+  
+  filterEvent(event) {
+    if (this.value === event.srcElement.value) { return; }
+    this.value = event.srcElement.value;
+    this._model.model = this.filter(this.value, this._searchBase);
   }
 }
 
