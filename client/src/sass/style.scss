@@ -113,3 +113,24 @@ header {
 .title {
   margin: 16px 0 16px 0;
 }
+
+.navigation {
+  background-color: red ;
+  //height:100%;
+  border: 1px solid yellow; //TODO investigate reason
+}
+
+ul.flex {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+ul.flex li {
+
+  margin-left: 2em;
+  margin-right: 2em;
+  list-style-type: none;
+}

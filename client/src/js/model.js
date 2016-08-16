@@ -1,5 +1,4 @@
 import 'whatwg-fetch';
-import {router} from './router.js';
 
 function isFunction (fn) {
   return typeof fn === 'function';
@@ -19,9 +18,9 @@ class Model {
 
   set model(model) {
     this._model = model;
-    this._callbacks.forEach(callback => callback(model));
     this._callbacksOnce.forEach(callback => callback(model));
     this._callbacksOnce = [];
+    this._callbacks.forEach(callback => callback(model));
   }
 
   init() {

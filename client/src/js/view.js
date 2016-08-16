@@ -1,10 +1,20 @@
+import {router} from './router.js';
+
 class View {
   constructor({ selector, model, document, template, filters }) {
     this._el = document.querySelector(selector);
     this.tempContainer = document.createElement('div');
     this.model = model;
-    this.model.onChange(model => this.renderPug(model, template));
-    this.applyfilters(filters);
+    this.model.onChange(model => {
+      if (router.isRecent()) {
+        this.renderPug(model, template);
+      } else {
+        this.model.model = filters[0].filter.filter(router.getSearchQuery());
+        //this.model.model = this.applyFilters(filters, router.getSearchQuery());
+        //TODO fix this hardcode
+      }
+    });
+    this.initFilters(filters);
   }
 
   renderPug(model, template) {
@@ -18,27 +28,34 @@ class View {
       this._el.removeChild(this._el.firstChild);
     }
 
-    setTimeout(() => {
+    //setTimeout(() => {
       for (; i < j; i += chunkSize) {
         chunkedModel = model.slice(i, i + chunkSize);
         this.tempContainer.innerHTML = template({ model: chunkedModel });
         this.appendChildsToEl(this._el, this.tempContainer);
       }
       //console.timeEnd('start rendering');
-    }, 0); //TODO investigate efficiency
+    //}, 0); //TODO investigate efficiency
   }
 
   appendChildsToEl(root, node) {
-      while (node.firstChild) {
-        root.appendChild(node.firstChild);
-      }
+    while (node.firstChild) {
+      root.appendChild(node.firstChild);
+    }
   }
 
-  applyfilters(filters) {
-    filters.forEach(filter => this.applyFiler(filter));
+  applyFilters(filters, value) {
+    filters.reduce(filter => {
+      debugger;
+      return filter.filter.filter(value);
+    });
+  }
+  
+  initFilters(filters) {
+    filters.forEach(filter => this.initFiler(filter));
   }
 
-  applyFiler(filter) {
+  initFiler(filter) {
     let timeout = null;
     const model = this.model; //TODO fix this
     const el = document.getElementById(filter.id);
