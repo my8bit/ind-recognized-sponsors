@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import {router} from './router.js';
 
 function isFunction (fn) {
   return typeof fn === 'function';
@@ -23,10 +24,9 @@ class Model {
     this._callbacksOnce = [];
   }
 
-  init(router) {
+  init() {
     return fetch(this._url)
       .then(response => response.json())
-      .then(data => router && router(data) || data)
       .then(data => this.model = data);
   }
 
