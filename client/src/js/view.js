@@ -42,14 +42,16 @@ class View {
     let timeout = null;
     const model = this.model; //TODO fix this
     const el = document.getElementById(filter.id);
-    el.addEventListener('keyup', event => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-      timeout = setTimeout(() => {
-        model.model = filter.filter.filter(event.srcElement.value);
-      }, 150);
-    });
+    if (el) {
+      el.addEventListener('keyup', event => {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
+          model.model = filter.filter.filter(event.srcElement.value);
+        }, 150);
+      });
+    }
   }
 }
 
