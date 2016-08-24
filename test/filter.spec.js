@@ -10,13 +10,6 @@ const assert = chai.assert;
 describe('Filter', () => {
   describe('check Filter class', () => {
     let filter;
-    const document = {
-      getElementById: () => {
-        return {
-          addEventListener: () => {}
-        };
-      }
-    };
 
     afterEach(() => {
       filter = null;
@@ -45,169 +38,136 @@ describe('Filter', () => {
       });
       afterEach(() => {
         spy = null;
+        spyOnce = null;
         modelMock = null;
         filterBy = null;
         clock.restore();
       });
 
-      it('\'title\' contains string and return 1 result',
+      it('data prop \'title\' contains string and return 1 result',
         () => {
-          const e = { srcElement: { value: 'hello' } };
           const filterConfig = {
-            id: 'mockFilter',
             model: modelMock,
-            document: document,
-            filterBy: filterBy
+            filterBy
           };
           filter = new Filter(filterConfig);
-          filter.filter(e);
-          assert(modelMock.model.length === 1, 'model length is');
+          expect(filter.filter('hello').length).to.be.equal(1);
         });
 
       it('that model not filters if input strings is the same as previous',
         () => {
-          let callbackSpy;
-          const e = { srcElement: { value: 'title' } };
-          const document = {
-            getElementById: () => {
-              return {
-                addEventListener: (event, callback) => {
-                  callbackSpy = callback;
-                }
-              };
-            }
-          };
+          const value = 'title';
           const filterConfig = {
-            id: 'mockFilter',
             model: modelMock,
-            document: document,
             filterBy: ['title', 'content']
           };
           filter = new Filter(filterConfig);
-          filter._searchBase.filter = sinon.spy();
-          expect(filter.value).to.be.equal('');
-          filter.filter(e);
-          expect(filter._searchBase.filter.calledOnce).to.be.ok;
+          filter.initialModel.filter = sinon.spy();
+
+          filter.filter(value);
+
+          expect(filter.initialModel.filter.calledOnce).to.be.ok;
           expect(filter.value).to.be.equal('title');
-          filter.filter({ srcElement: { value: 'title' }});
-          expect(filter._searchBase.filter.calledOnce).to.be.ok;
+
+          filter.filter(value);
+
+          expect(filter.initialModel.filter.calledOnce).to.be.ok;
         });
 
       it('\'title\' and not ignore case contains string and return 2 results',
         () => {
-          const e = { srcElement: { value: 'HELL' } };
+          const value = 'HELL';
           const filterConfig = {
-            id: 'mockFilter',
             model: modelMock,
-            document: document,
-            filterBy: filterBy,
-            caseSensetive: true
+            filterBy,
+            caseSensetive: false
           };
           filter = new Filter(filterConfig);
-          filter.filter(e);
-          assert(modelMock.model.length === 0, 'model length is');
+          expect(filter.filter(value).length).to.be.equal(2);
         });
 
       it('\'title\' and not ignore case contains string and return 0 result',
         () => {
-          const e = { srcElement: { value: 'Hello' } };
+          const value = 'Hello';
           const filterConfig = {
-            id: 'mockFilter',
             model: modelMock,
-            document: document,
-            filterBy: filterBy,
+            filterBy,
             caseSensetive: true
           };
           filter = new Filter(filterConfig);
-          filter.filter(e);
-          assert(modelMock.model.length === 0, 'model length is');
+          expect(filter.filter(value).length).to.be.equal(0);
         });
 
       it('\'title\' contains string and return 2 results',
         () => {
-          const e = { srcElement: { value: 'hell' } };
+          const value = 'hell';
           const filterConfig = {
-            id: 'mockFilter',
             model: modelMock,
-            document: document,
-            filterBy: filterBy
+            filterBy
           };
           filter = new Filter(filterConfig);
-          filter.filter(e);
-          assert(modelMock.model.length === 2, 'model length is');
+          expect(filter.filter(value).length).to.be.equal(2);
         });
 
       it('\'title\' not contains search string and return 0 result',
         () => {
-          const e = { srcElement: { value: '123' } };
+          const value = '123';
           const filterConfig = {
-            id: 'mockFilter',
             model: modelMock,
-            document: document,
-            filterBy: filterBy
+            filterBy
           };
           filter = new Filter(filterConfig);
-          filter.filter(e);
-          assert(modelMock.model.length === 0, 'model length is');
+          expect(filter.filter(value).length).to.be.equal(0);
         });
 
       it('\'title\' and \'content\' contains string and return 2 result',
         () => {
-          const e = { srcElement: { value: 'this' } };
+          const value = 'this';
           const filterConfig = {
             id: 'mockFilter',
             model: modelMock,
-            document: document,
             filterBy: ['title', 'content']
           };
           filter = new Filter(filterConfig);
-          filter.filter(e);
-          assert(modelMock.model.length === 2, 'model length is');
+          expect(filter.filter(value).length).to.be.equal(2);
         });
 
       it('\'title\' and \'content\' contains string and return 2 results',
         () => {
-          const e = { srcElement: { value: 'hell' } };
+          const value = 'hell';
           const filterConfig = {
-            id: 'mockFilter',
             model: modelMock,
-            document: document,
             filterBy: ['title', 'content']
           };
           filter = new Filter(filterConfig);
-          filter.filter(e);
-          assert(modelMock.model.length === 2, 'model length is');
+          expect(filter.filter(value).length).to.be.equal(2);
         });
 
       it('\'title\' and \'content\' contains string and return 1 results',
         () => {
-          const e = { srcElement: { value: 'title' } };
+          const value = 'title';
           const filterConfig = {
-            id: 'mockFilter',
             model: modelMock,
-            document: document,
             filterBy: ['title', 'content']
           };
           filter = new Filter(filterConfig);
-          filter.filter(e);
-          assert(modelMock.model.length === 1, 'model length is');
+          
+          
+          expect(filter.filter(value).length).to.be.equal(1);
         });
 
       it('\'title\' and \'content\' not contains search string and return 0 result',
         () => {
           const filterConfig = {
-            id: 'mockFilter',
             model: modelMock,
-            document: document,
             filterBy: ['title', 'content']
           };
-          const e = { srcElement: { value: '123' } };
+          const value = '123';
           filter = new Filter(filterConfig);
-          filter.filter(e);
-          assert(modelMock.model.length === 0, 'model length is');
+          expect(filter.filter(value).length).to.be.equal(0);
         });
 
-      it('should set timeout for key event',
+      xit('should set timeout for key event',
         () => {
           let callbackSpy;
           const e = { srcElement: { value: 'title' } };
@@ -227,21 +187,21 @@ describe('Filter', () => {
             filterBy: ['title', 'content']
           };
           filter = new Filter(filterConfig);
-          filter.filter = sinon.spy();
+          filter.filterEvent = sinon.spy();
 
           callbackSpy();
           clock.tick(150);
-          expect(filter.filter.calledOnce).to.be.ok;
+          expect(filter.filterEvent.calledOnce).to.be.ok;
 
           callbackSpy();
           clock.tick(50);
-          expect(filter.filter.calledTwice).to.not.be.ok;
+          expect(filter.filterEvent.calledTwice).to.not.be.ok;
           callbackSpy();
           clock.tick(100);
-          expect(filter.filter.calledTwice).to.not.be.ok;
+          expect(filter.filterEvent.calledTwice).to.not.be.ok;
 
           clock.tick(50);
-          expect(filter.filter.calledTwice).to.be.ok;
+          expect(filter.filterEvent.calledTwice).to.be.ok;
         });
 
     });

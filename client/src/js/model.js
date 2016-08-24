@@ -18,15 +18,15 @@ class Model {
 
   set model(model) {
     this._model = model;
-    this._callbacks.forEach(callback => callback(model));
     this._callbacksOnce.forEach(callback => callback(model));
     this._callbacksOnce = [];
+    this._callbacks.forEach(callback => callback(model));
   }
 
   init() {
     return fetch(this._url)
-      .then(response => { return response.json(); })
-      .then(data => { this.model = data; });
+      .then(response => response.json())
+      .then(data => this.model = data);
   }
 
   onChange(callback) {

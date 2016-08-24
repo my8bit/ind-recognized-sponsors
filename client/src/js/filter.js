@@ -1,41 +1,28 @@
-import Action from './action.js';
-
-class Filter extends Action {
-  constructor({ id, model, document, filterBy, caseSensetive }) {
-    super({ id, model, document });
-    this._addListener();
+class Filter {
+  constructor({ model, filterBy, caseSensetive }) {
     this.value = '';
     this._filterBy = filterBy;
     this._caseSensetive = caseSensetive;
+    model.onChangeOnce(model => this.initialModel = model.slice(0));
   }
 
-  _addListener() {
-    let timeout = null;
-    this.el.addEventListener('keyup', event => {
-      console.timeEnd('key');
-      console.time('key');
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-      timeout = setTimeout(() => {
-        this.filter(event);
-      }, 150);
-    });
-  }
-
-  filter(event) {
-    if (this.value === event.srcElement.value) { return; }
-    this.value = event.srcElement.value;
-    this._model.model = this._searchBase.filter(model => {
+  filter(value) {
+    if (this.value === value) {
+      return;
+    } else {
+      this.value = value;
+    }
+    return this.initialModel.filter(model => {
       return this._filterBy.some(filterName => {
         const sourceString = !this._caseSensetive ?
           model[filterName].toUpperCase() : model[filterName];
-
-        const searchString = !this._caseSensetive ? this.value.toUpperCase() : this.value;
+        const searchString = !this._caseSensetive ?
+          value.toUpperCase() : value;
         return sourceString.search(searchString) !== -1;
       });
     });
   }
+
 }
 
 export default Filter;
