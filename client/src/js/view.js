@@ -38,7 +38,7 @@ class View {
     }
   }
 
-  initFiler(filter) {
+  initFilter(filter) {
     let timeout = null;
     const model = this.model; //TODO fix this
     const el = document.getElementById(filter.id);
