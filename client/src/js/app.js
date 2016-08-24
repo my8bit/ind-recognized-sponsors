@@ -1,9 +1,10 @@
 import Model  from './model.js';
-import View   from './view.js';
+//import View   from './view.js';
 import Filter from './filter.js';
 import config from './config.js';
 import React from 'react';
 import {render} from 'react-dom';
+import {router} from './router.js';
 //TODO https://github.com/halhenke/jade-react-loader
 
 const model = new Model(config.url);
@@ -50,7 +51,12 @@ class List extends React.Component {
   constructor() {
     super();
     this.state = {list:[]};
-    model.onChange(model => this.setState({list: model}));
+    model.onChange(model => {
+      if (!router.isRecent()) {
+        model = filter.filter(router.getSearchQuery());
+      }
+      this.setState({list: model})
+    });
   }
 
   render() {
