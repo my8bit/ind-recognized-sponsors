@@ -18,10 +18,10 @@ const view = new View({
   selector: config.list,
   model,
   document,
-  filters: [{
+  filter: {
     filter,
     id: config.filterId
-  }],
+  },
   template: config.template
 });
 
