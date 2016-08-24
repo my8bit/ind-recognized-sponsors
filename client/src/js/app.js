@@ -14,7 +14,7 @@ const filter = new Filter(filterConfig);
 
 model.init();
 
-const view = new View({
+new View({
   selector: config.list,
   model,
   document,

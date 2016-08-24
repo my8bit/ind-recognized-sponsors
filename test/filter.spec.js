@@ -1,11 +1,10 @@
 import Filter from '../client/src/js/filter.js';
 
-const chai = require('chai');
-const sinon = require('sinon');
+import chai from 'chai';
+import sinon from 'sinon';
 
 /*jshint expr: true*/
 const expect = chai.expect;
-const assert = chai.assert;
 
 describe('Filter', () => {
   describe('check Filter class', () => {
@@ -170,7 +169,7 @@ describe('Filter', () => {
       xit('should set timeout for key event',
         () => {
           let callbackSpy;
-          const e = { srcElement: { value: 'title' } };
+          //const e = { srcElement: { value: 'title' } };
           const document = {
             getElementById: () => {
               return {
