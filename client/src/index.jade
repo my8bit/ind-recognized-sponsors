@@ -11,10 +11,10 @@ html(lang="en-US")
     meta(name="mobile-web-app-capable" content="yes")
     meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
     meta(name="google-site-verification" content="RqaHiZoRi8-1zohGNbkIkUxe5Mx3to7l2YHsXPSbN9I")
+  body
     link(rel="icon" href="http://www.clickfire.com/images/flags/netherlands.gif")
     link(rel="icon" sizes="96x96" href="https://maxcdn.icons8.com/Color/PNG/96/Business/businessman-96.png")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css")
-  body
     header
       div.header-container
         //a(target="_blank" style="float: right;" href="https://validator.w3.org/nu/?doc=http%3A%2F%2Find-recognized.netlify.com")
@@ -24,3 +24,10 @@ html(lang="en-US")
         input#filter(type="text" class="search" placeholder="Start typing name of the company..." autofocus)
     div.container
       ul.companies
+    script.
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-83061652-1', 'auto');
+      ga('send', 'pageview');
