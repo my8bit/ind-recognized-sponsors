@@ -11,7 +11,8 @@ This is the application for quick search at list of recognized [ind](https://ind
 
 # Deployment
 
-Application is accessible at netlify by URL [ind-recognized.netifly.com](https://ind-recognized.netlify.com)
+Application is accessible at netlify by URL [http://ind-recognized-sponsors.nl.eu.org/](http://ind-recognized-sponsors.nl.eu.org/)
+Admin panel [https://app.netlify.com/](https://app.netlify.com/sites/ind-recognized)
 
 # Badges SWAG
 
