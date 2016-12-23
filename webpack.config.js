@@ -17,7 +17,7 @@ function isPoduction() {
 
 module.exports = {
     entry: [
-      './client/src/js/app.js',
+      './client/src/js/app.jsx',
       './client/src/sass/style.scss'
     ],
     output: {
@@ -34,7 +34,7 @@ module.exports = {
     module: {
       loaders: [
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /(node_modules|bower_components)/,
           loader: 'babel',
           query: {
