@@ -1,22 +1,16 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {initAction} from '../actions/actions';
 
-export class List extends React.Component {
-  constructor() {
-    super();
-    this.state = {list:[]};
-  }
-
+class ListCmp extends React.Component {
   componentWillMount() {
-    const {model, router} = this.props;
-    model.onChange(model => {
-      if (!router.isRecent()) {
-        model = filter.filter(router.getSearchQuery());
-      }
-      this.setState({list: model})
-    });
+    const {dispatch} = this.props;
+    dispatch(initAction());
   }
+
   render() {
-    const commentNodes = this.state.list.map(function(item, idx) {
+    const {filtered} = this.props;
+    const commentNodes = filtered.map(function(item, idx) {
       const href = 'https://www.google.com.ua/search?q=' + item.name;
       return (
         <li key={idx} className='title'>
@@ -33,3 +27,16 @@ export class List extends React.Component {
     );
   }
 };
+
+ListCmp.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  value: React.PropTypes.string.isRequired,
+  filtered: React.PropTypes.array.isRequired
+};
+
+const mapStateToProps = store => {
+  const {value, filtered} = store.listReducer;
+  return {value, filtered};
+};
+
+export const List = connect(mapStateToProps)(ListCmp);
