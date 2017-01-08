@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {initAction} from '../actions/actions';
 import LazyRender from 'react-lazy-render';
-import createFragment from 'react-addons-create-fragment'; // ES6
+// import createFragment from 'react-addons-create-fragment'; // ES6
 
 class ListCmp extends React.Component {
   componentWillMount() {
