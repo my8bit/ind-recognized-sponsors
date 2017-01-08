@@ -1,5 +1,5 @@
 {
- "presets": [ "es2015", "react" ],
+ "presets": ["es2015", "react"],
  "sourceMaps": "both",
  "plugins": [ "transform-react-pug" ]
 }

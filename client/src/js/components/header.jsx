@@ -10,7 +10,9 @@ export class Header extends React.Component {
     this.model = this.props.model;
     this.filter = this.props.filter;
   }
+
   change(event) {
+    /*
     if (this.keyPressTimeout) {
       clearTimeout(this.keyPressTimeout);
     }
@@ -18,6 +20,7 @@ export class Header extends React.Component {
     this.keyPressTimeout = setTimeout(() => {
       this.model.model = this.filter.filter(value);
     }, 150);
+    */
   }
 
   render() {
