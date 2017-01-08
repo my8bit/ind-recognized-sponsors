@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {initAction} from '../actions/actions';
 import LazyRender from 'react-lazy-render';
+import createFragment from 'react-addons-create-fragment'; // ES6
 
 class ListCmp extends React.Component {
   componentWillMount() {
@@ -14,16 +15,23 @@ class ListCmp extends React.Component {
     const commentNodes = filtered.map(function(item, idx) {
       const href = 'https://www.google.com.ua/search?q=' + item.name;
       return (
-        <li key={idx} className='title' style={{height: 20}}>
+        <li key={idx} className='title'>
           <a target='_blank' href={href}>{item.name}</a>
         </li>
       );
     });
+/*
     return (
       <div className='container'>
         <ul className='companies'>
-          {commentNodes.length ? <LazyRender maxHeight={300}>{commentNodes}</LazyRender> : ''}
+          {commentNodes}
         </ul>
+      </div>
+    );
+*/
+    return (
+      <div className='container' ref={div => { if (div) {this.h = this.h ? this.h : div.offsetHeight;}}}>
+        {commentNodes.length ? <LazyRender className='companies' maxHeight={this.h || 300}>{commentNodes}</LazyRender> : ''}
       </div>
     );
   }

@@ -9,6 +9,10 @@ $body-font-light: #3A4F52;
 
 $header-background: #FF9900;
 
+body, html {
+  height: 100%;
+}
+
 body {
   font-family: $body-font;
   background-color: $body-background;
@@ -30,23 +34,26 @@ a {
   color: #503D84;
 }
 
-a:focus {
+
+//a:focus {
   /*box-shadow: inset 1px 0 1px 0 rgba(0,0,0,.45);*/
-  padding-left: 1em;
-  outline: none;
+//  padding-left: 1em;
+//  outline: none;
   /*
   outline-offset: 0.3em;
   outline-width: 5px;
   outline-style: dotted;
   outline-color: $header-background;  */
-  
-  border-left: 1em solid $header-background;
-  border-color: transparent transparent transparent $header-background;
-}
 
+//  border-left: 1em solid $header-background;
+//  border-color: transparent transparent transparent $header-background;
+//}
+
+/*
 a:hover {
   padding-left: 1em;
 }
+*/
 
 a:visited {
   color: $headers-color;
@@ -59,11 +66,16 @@ label {
 
 header {
   background-color: $header-background;
-  /*padding: 1em;*/
-  width: 100%;
-  top: 0;
-  left: 0;
-  position: fixed;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#app {
+  height: 100vh;
 }
 
 .search {
@@ -94,7 +106,11 @@ header {
 }
 
 .container {
-  margin-top: 190px;
+  height: 100%;
+  overflow: auto;
+
+  // border: 5px solid red;
+  // margin-top: 190px;
   //top: 180px;
   //position: absolute;
   ////border: 1px solid red;
