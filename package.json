@@ -67,6 +67,7 @@
     "react-dom": "^15.4.2",
     "react-helmet": "^3.1.0",
     "react-jade": "^2.5.0",
+    "react-lazy-render": "BI/react-lazy-render",
     "react-pug": "0.0.0",
     "react-redux": "^5.0.1",
     "react-router": "^2.7.0",

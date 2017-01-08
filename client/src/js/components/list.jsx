@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {initAction} from '../actions/actions';
+import LazyRender from 'react-lazy-render';
 
 class ListCmp extends React.Component {
   componentWillMount() {
@@ -13,7 +14,7 @@ class ListCmp extends React.Component {
     const commentNodes = filtered.map(function(item, idx) {
       const href = 'https://www.google.com.ua/search?q=' + item.name;
       return (
-        <li key={idx} className='title'>
+        <li key={idx} className='title' style={{height: 20}}>
           <a target='_blank' href={href}>{item.name}</a>
         </li>
       );
@@ -21,7 +22,7 @@ class ListCmp extends React.Component {
     return (
       <div className='container'>
         <ul className='companies'>
-          {commentNodes}
+          {commentNodes.length ? <LazyRender maxHeight={300}>{commentNodes}</LazyRender> : ''}
         </ul>
       </div>
     );
