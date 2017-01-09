@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const bourbon = require('bourbon');
 const path = require('path');
+const SplitByPathPlugin = require('webpack-split-by-path');
 
 function getDevTool() {
   if (process.env.NODE_ENV !== 'PRODUCTION') {
@@ -22,7 +23,9 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'client/dist/js'),
-    filename: 'bundle.js'
+    // filename: 'bundle.js'
+    filename: '[name]-[chunkhash].js',
+    chunkFilename: '[name]-[chunkhash].js'
   },
   devServer: {
     colors: true,
@@ -52,9 +55,9 @@ module.exports = {
       }
     ]
   },
-  sassLoader: {
-    includePaths: [bourbon.includePaths]
-  },
+  // sassLoader: {
+  //   includePaths: [bourbon.includePaths]
+  // },
   plugins: [
     new CopyWebpackPlugin([{
       from: './client/data/recognized-sponsors-data.json',
@@ -65,6 +68,12 @@ module.exports = {
       filename: '../index.html',
       pretty: true
     }),
+    new SplitByPathPlugin([
+      {
+        name: 'vendor',
+        path: path.join(__dirname, 'node_modules')
+      }
+    ]),
     new ExtractTextPlugin('../css/style.css', {
       allChunks: true
     })
